@@ -26,6 +26,9 @@ Route::middleware('can:edit-users')->group(function () {
     Route::post('/manage', 'UsersController@show')->name('admin.manage');
     
     Route::get('/manage/{id}', 'UsersController@edit')->name('admin.manage.user');
+
+
+    Route::post('/manage/{id}', 'UsersController@update')->name('admin.manage.roles');
 });
 
 

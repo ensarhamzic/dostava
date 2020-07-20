@@ -21,7 +21,30 @@ class UsersController extends Controller
     }
 
     public function edit($id){
+        $oneUser = User::find($id);
+        $roles = Role::all();
+
+        return view('admin/manage', [
+            'oneUser' => $oneUser,
+            'roles' => $roles
+        ]);
+    }
+
+    public function update($id, Request $request) {
         $user = User::find($id);
-        $roles = $user->roles;
+        $adminRole = $request->admin;
+        $moderatorRole = $request->moderator;
+        $userRole = $request->user;
+
+        $data = [$adminRole, $moderatorRole, $userRole];
+
+        foreach($data as $role) {
+            if($role != null){
+                if(! $user->roles->pluck('id')->contains($role)){
+                    $user->roles()->attach($role);
+                }
+            }
+        }
+
     }
 }

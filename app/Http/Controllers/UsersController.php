@@ -3,24 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use App\User;
 use App\Role;
 
 class UsersController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('admin/manage');
     }
 
-    public function show(Request $request){
+    public function show(Request $request)
+    {
         $email = $request->email;
-        $users = User::where('email', $email)->orWhere('email', 'like', $email .'%')->get();
+        $users = User::where('email', $email)->orWhere('email', 'like', $email . '%')->get();
         return view('admin/manage', [
             'users' => $users
         ]);
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $oneUser = User::find($id);
         $roles = Role::all();
 
@@ -30,23 +34,15 @@ class UsersController extends Controller
         ]);
     }
 
-    public function update($id, Request $request) {
+    public function update($id, Request $request)
+    {
+        $newRoles = $request->roles;
         $user = User::find($id);
-        $adminRole = $request->admin;
-        $moderatorRole = $request->moderator;
-        $userRole = $request->user;
 
-        $data = [$adminRole, $moderatorRole, $userRole];
+        $user->roles()->sync($newRoles);
 
-        foreach($data as $role) {
-            if($role != null){
-                if(! $user->roles->pluck('id')->contains($role)){
-                    $user->roles()->attach($role);
-                }
+        Session::flash('success', 'Uspesno izmenjena uloga');
 
-                
-            }
-        }
-
+        return redirect(route('admin.manage.user', $user));
     }
 }

@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+
+
+
 @section('content')
 <div class="container">
     <form action="{{ route('admin.manage') }}" method="POST">
@@ -26,9 +29,10 @@
     <h3>Email: {{ $oneUser->email }}</h3>
     <form action="{{ route('admin.manage.roles', $oneUser->id) }}" method="POST">
         @csrf
+        @method('put')
         @foreach ($roles ?? '' as $role)
 
-        <input type="checkbox" id="{{ $role->name }}" name="{{ $role->name }}"
+        <input type="checkbox" id="{{ $role->name }}" name="roles[]"
             {{ $oneUser->roles->pluck('name')->contains($role->name) ? 'checked' : '' }} value="{{ $role->id }}">
         <label for="{{ $role->name }}">{{ $role->name }}</label> <br>
         @endforeach
@@ -38,5 +42,6 @@
     @endif
 
 </div>
+
 
 @endsection

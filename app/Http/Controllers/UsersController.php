@@ -43,6 +43,8 @@ class UsersController extends Controller
                 if(! $user->roles->pluck('id')->contains($role)){
                     $user->roles()->attach($role);
                 }
+
+                
             }
         }
 

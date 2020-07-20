@@ -22,17 +22,21 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware('can:edit-users')->group(function () {
-    Route::get('/manage/users', 'UsersController@index')->name('admin.manage');
-    Route::post('/manage/users', 'UsersController@show')->name('admin.manage');
+    Route::get('/users', 'UsersController@index')->name('admin.manage');
+    Route::post('/users', 'UsersController@show')->name('admin.manage');
     
-    Route::get('/manage/users/{id}', 'UsersController@edit')->name('admin.manage.user');
+    Route::get('/users/{id}', 'UsersController@edit')->name('admin.manage.user');
 
 
-    Route::put('/manage/users/{id}', 'UsersController@update')->name('admin.manage.roles');
+    Route::put('/users/{id}', 'UsersController@update')->name('admin.manage.roles');
 });
 
 Route::middleware('can:edit-food')->group(function () {
-    Route::get('/manage/restaurants', 'FoodController@index')->name('manage.food');
+    Route::get('/restaurants', 'RestaurantsController@index')->name('manage.restaurants');
+    Route::get('/restaurants/create', 'RestaurantsController@create')->name('restaurants.create');
+    Route::post('/restaurants/create', 'RestaurantsController@store')->name('restaurants.store');
+
+    Route::get('/food/create/{id}', 'FoodController@create')->name('food.create');
 });
 
 

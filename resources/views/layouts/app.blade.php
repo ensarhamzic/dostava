@@ -67,7 +67,7 @@
                                     @endcan
 
                                     @can('edit-food')
-                                    <a class="dropdown-item" href="{{ route('manage.food') }}">Manage restaurants
+                                    <a class="dropdown-item" href="{{ route('manage.restaurants') }}">Manage restaurants
                                     </a>
                                     @endcan
 

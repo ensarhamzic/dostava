@@ -18,20 +18,29 @@
                 </div>
             </div>
 
-            <div class="row mt-3">
+
+            <label class="mt-3" for="kategorija">Kategorija jela:</label> <br>
+            <div class="row">
                 <div class="col-8">
-                    <label for="kategorija">Kategorija jela:</label>
+                    
                     <select name="category" id="category" class="form-control">
                         @foreach ($menus as $menu)
-                            <option value="{{ $menu->category }}">{{ $menu->category }}</option>
+                            <option value="{{ $menu->id }}">{{ $menu->category }}</option>
                         @endforeach
                     </select>
                 </div>
                 
                 <div class="col-4">
                     <input type="submit" class="btn btn-success" value="Napravi">
+                    <a href="{{ route('menu.create') }}" class="btn btn-success">Dodaj kategoriju hrane</a> <br>
                 </div>
             </div>
             </form>
+
+            @foreach ($food as $one)
+                <h3>{{ $one->name }}</h3>
+                <h3>{{ $one->cena }} din.</h3>
+                <hr>
+            @endforeach
     </div>
 @endsection

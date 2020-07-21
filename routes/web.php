@@ -36,7 +36,13 @@ Route::middleware('can:edit-food')->group(function () {
     Route::get('/restaurants/create', 'RestaurantsController@create')->name('restaurants.create');
     Route::post('/restaurants/create', 'RestaurantsController@store')->name('restaurants.store');
 
+    Route::get('/menus', 'MenusController@index')->name('menu.index');
+    Route::get('/menu/create', 'MenusController@create')->name('menu.create');
+    Route::post('/menu/create', 'MenusController@store')->name('menu.store');
+
+    Route::get('/food/{id}', 'FoodController@index')->name('food.create');
     Route::get('/food/create/{id}', 'FoodController@create')->name('food.create');
+    Route::post('/food/create/{id}', 'FoodController@store')->name('food.store');
 });
 
 

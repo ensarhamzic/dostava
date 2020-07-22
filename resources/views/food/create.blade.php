@@ -42,5 +42,6 @@
                 <h3>{{ $one->cena }} din.</h3>
                 <hr>
             @endforeach
+
     </div>
 @endsection

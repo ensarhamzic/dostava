@@ -16,12 +16,17 @@ class FoodController extends Controller
     public function create($id) {
         $restaurant = Restaurant::find($id);
         $food = $restaurant->food;
+        
+        $c = collect(new Menu);
+        dd($c);
+
+        
         $menus = Menu::all();
 
         return view('food/create', [
             'restaurant' => $restaurant,
             'menus' => $menus,
-            'food' => $food
+            'food' => $food,
         ]);
     }
 

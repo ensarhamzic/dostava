@@ -42,7 +42,7 @@
                 <h2>{{ $category->category }}</h2>
                 @foreach ($category->food as $hrana)
                     @if ($hrana->restaurant->id == $restaurant->id)
-                        <h4>{{ $hrana->name }}, {{ $hrana->cena  }} din.</h4>
+                        <h4><a href="{{ route('food.edit', $hrana) }}">{{ $hrana->name }}, {{ $hrana->cena  }} din.</a></h4>
                     @endif
                 @endforeach
             @endforeach

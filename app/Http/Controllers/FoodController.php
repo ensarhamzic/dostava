@@ -46,7 +46,41 @@ class FoodController extends Controller
         return redirect(route('food.create', $id));
     }
 
-    public function edit() {
+    public function edit($id) {
+        $jelo = Food::find($id);
+        $menus = Menu::all();
+        return view('food/edit',[
+            'jelo' => $jelo,
+            'menus' => $menus
+        ]);
+    }
 
+    public function update($id, Request $request) {
+        $name = $request->name;
+        $cena = $request->cena;
+        $menu = $request->category;
+
+        $food = Food::find($id);
+        if($food->name != $name) {
+            $food->name = $name;
+        }
+
+        if($food->cena != $cena) {
+            $food->cena = $cena;
+        }
+
+        if($food->menu_id != $menu) {
+            $food->menu_id = $menu;
+        }
+
+        $food->save();
+        return redirect(route('food.create', $food->restaurant));
+    }
+
+    public function destroy($id){
+        $food = Food::find($id);
+        $restaurant = $food->restaurant;
+        $food->delete();
+        return redirect(route('food.create', $restaurant));
     }
 }

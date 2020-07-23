@@ -11,4 +11,6 @@ class Menu extends Model
     public function food() {
         return $this->hasMany('App\Food');
     }
+
+    
 }

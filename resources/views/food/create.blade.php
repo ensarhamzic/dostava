@@ -37,10 +37,12 @@
             </div>
             </form>
 
-            @foreach ($food as $one)
-                <h3>{{ $one->name }}</h3>
-                <h3>{{ $one->cena }} din.</h3>
-                <hr>
+
+            @foreach ($categories as $category)
+                <h2>{{ $category->category }}</h2>
+                @foreach ($category->food as $hrana)
+                    <h4>{{ $hrana->name }}, {{ $hrana->cena  }} din.</h4>
+                @endforeach
             @endforeach
 
     </div>

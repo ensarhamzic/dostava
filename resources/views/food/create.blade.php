@@ -37,11 +37,13 @@
             </div>
             </form>
 
-
+            <!-- Uzeli smo samo kategorije hrane koje ima taj restoran, i ovde filtrirali da se prikazuje samo hrana za tu kateogoriju -->
             @foreach ($categories as $category)
                 <h2>{{ $category->category }}</h2>
                 @foreach ($category->food as $hrana)
-                    <h4>{{ $hrana->name }}, {{ $hrana->cena  }} din.</h4>
+                    @if ($hrana->restaurant->id == $restaurant->id)
+                        <h4>{{ $hrana->name }}, {{ $hrana->cena  }} din.</h4>
+                    @endif
                 @endforeach
             @endforeach
 

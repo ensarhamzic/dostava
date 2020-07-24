@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/restorani', 'HomeController@index')->name('home');
 
 Route::middleware('can:edit-users')->group(function () {
     Route::get('/users', 'UsersController@index')->name('admin.manage');
@@ -47,6 +47,8 @@ Route::middleware('can:edit-food')->group(function () {
     Route::get('/food/edit/{id}', 'FoodController@edit')->name('food.edit');
     Route::post('/food/edit/{id}', 'FoodController@update')->name('food.update');
     Route::delete('/food/delete/{id}', 'FoodController@destroy')->name('food.destroy');
+
+
 });
 
 

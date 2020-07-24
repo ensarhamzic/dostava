@@ -68,7 +68,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Pocetna</a>
+                        <a href="{{ route('home') }}">Pocetna</a>
                     @else
                         <a href="{{ route('login') }}">Uloguj se</a>
 

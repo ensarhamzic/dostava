@@ -48,7 +48,6 @@ Route::middleware('can:edit-food')->group(function () {
     Route::post('/food/edit/{id}', 'FoodController@update')->name('food.update');
     Route::delete('/food/delete/{id}', 'FoodController@destroy')->name('food.destroy');
 
-
 });
 
 

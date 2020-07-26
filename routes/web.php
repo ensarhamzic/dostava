@@ -50,4 +50,6 @@ Route::middleware('can:edit-food')->group(function () {
 
 });
 
+Route::get('/restorani/{id}', 'HomeController@show')->name('restorani');
+
 

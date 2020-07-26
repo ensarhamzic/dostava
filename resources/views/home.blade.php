@@ -8,23 +8,30 @@
                 <div class="card-header">Restorani</div>
 
                 <div class="card-body">
-                   
+                   @foreach ($restaurants as $restaurant)
+                       <a href="{{ route('restorani', $restaurant) }}">{{ $restaurant->name }}</a> <br>
+                   @endforeach
                 </div>
             </div>
         </div>
 
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">@if ( $restoran ?? '' ) {{ $restoran->name }} @else Birajte restoran @endif</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
+                    @if ( $restoran ?? '' ) 
+                        @foreach ($categories as $category)
+                            <h2>{{ $category->category }}</h2>
+                            @foreach ($category->food as $hrana)
+                                @if ($hrana->restaurant->id == $restoran->id)
+                                    <h4>{{ $hrana->name }}, {{ $hrana->cena  }} din.</h4>
+                                @endif
+                            @endforeach
+                        @endforeach
+                    @else
+                    Izaberite restoran
                     @endif
-
-                    {{ __('You are logged in!') }}
                 </div>
             </div>
         </div>
